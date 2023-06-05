@@ -1,10 +1,9 @@
 ﻿namespace Core.Entities;
 
-public class Recipe
+public class Recipe : BaseEntity
 {
-    public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public int preparationMinutes { get; set; }
-    public int cookingMinutes { get; set; }
+    public int PreparationMinutes { get; set; }
+    public int CookingMinutes { get; set; }
 }
