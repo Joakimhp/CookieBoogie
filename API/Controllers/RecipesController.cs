@@ -30,4 +30,11 @@ public class RecipesController : BaseApiController
             .Include(r => r.RecipeType)
             .SingleOrDefaultAsync(r => r.Id == id);
     }
+    
+    [HttpGet]
+    public async Task<ActionResult<RecipeType>> GetRecipeTypes()
+    {
+        var recipeTypes = await _context.RecipeTypes.ToListAsync();
+        return Ok(recipeTypes);
+    }
 }
