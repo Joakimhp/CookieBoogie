@@ -14,6 +14,7 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
         builder.Property(r => r.PreparationMinutes).HasColumnType("int").HasDefaultValue(30);
         builder.Property(r => r.CookingMinutes).HasColumnType("int").HasDefaultValue(30);
         builder.Property(r => r.Servings).IsRequired().HasDefaultValue(4);
+        builder.Property(r => r.PictureUrl).IsRequired();
         builder.HasOne(rt => rt.RecipeType).WithMany()
             .HasForeignKey(r => r.RecipeTypeId);
     }

@@ -1,4 +1,9 @@
-﻿using Core.Entities;
+﻿using System.Reflection;
+using API.Dtos;
+using AutoMapper;
+using Core.Entities;
+using Core.Interfaces;
+using Core.Specifications;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,34 +12,43 @@ namespace API.Controllers;
 
 public class RecipesController : BaseApiController
 {
-    private readonly CookbookContext _context;
+    private readonly IGenericRepository<Recipe> _recipeRepo;
+    private readonly IGenericRepository<RecipeType> _recipeTypeRepo;
+    private readonly IMapper _mapper;
 
-    public RecipesController(CookbookContext context)
+    public RecipesController(
+        IGenericRepository<Recipe> recipeRepo,
+        IGenericRepository<RecipeType> recipeTypeRepo,
+        IMapper mapper)
     {
-        _context = context;
+        _recipeRepo = recipeRepo;
+        _recipeTypeRepo = recipeTypeRepo;
+        _mapper = mapper;
     }
     
     [HttpGet]
-    public async Task<ActionResult<List<Recipe>>> GetRecipes()
+    public async Task<ActionResult<IReadOnlyList<RecipesToReturnDto>>> GetRecipes()
     {
-        var recipes = await _context.Recipes
-            .Include(r => r.RecipeType)
-            .ToListAsync();
-        return Ok(recipes);
+        var spec = new RecipesWithTypesSpecification();
+
+        var recipes = await _recipeRepo.ListAsync(spec);
+        return Ok(_mapper.Map<IReadOnlyList<Recipe>, IReadOnlyList<RecipesToReturnDto>>(recipes));
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Recipe>> GetRecipe(int id)
+    public async Task<ActionResult<RecipesToReturnDto>> GetRecipe(int id)
     {
-        return await _context.Recipes
-            .Include(r => r.RecipeType)
-            .SingleOrDefaultAsync(r => r.Id == id);
+        var spec = new RecipesWithTypesSpecification(id);
+        
+        var recipe = await _recipeRepo.GetEntityWithSpec(spec);
+        
+        return _mapper.Map<Recipe, RecipesToReturnDto>(recipe);
     }
     
-    [HttpGet]
+    [HttpGet("/types")]
     public async Task<ActionResult<RecipeType>> GetRecipeTypes()
     {
-        var recipeTypes = await _context.RecipeTypes.ToListAsync();
+        var recipeTypes = await _recipeTypeRepo.ListAllAsync();
         return Ok(recipeTypes);
     }
 }

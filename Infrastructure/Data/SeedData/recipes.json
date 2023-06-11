@@ -2,33 +2,37 @@
   {
     "Name": "Lasagna",
     "Description": "Lasagna is a traditional Italian dish made with alternating layers of pasta, cheese, and often ragu (a meat sauce) or tomato sauce. The dish is usually topped with grated cheese and baked until golden brown.",
-    "PreparationInMinutes": 30,
-    "CoookingMinutes": 60,
+    "PreparationMinutes": 30,
+    "CookingMinutes": 60,
     "Servings": 8,
+    "PictureUrl": "Lasagna.jpeg",
     "RecipeTypeId": 1
   },
   {
     "Name": "Butternut Squash Soup",
     "Description": "Butternut squash soup is a winter favorite. This version is made with roasted butternut squash, onions, and garlic, puréed with stock and cream, and seasoned with nutmeg and cayenne.",
-    "PreparationInMinutes": 15,
-    "CoookingMinutes": 45,
+    "PreparationMinutes": 15,
+    "CookingMinutes": 45,
     "Servings": 8,
+    "PictureUrl": "BSS.jpg",
     "RecipeTypeId": 3
   },
   {
     "Name": "Cheeseburger and fries",
     "Description": "A cheeseburger is a hamburger topped with cheese. Traditionally, the slice of cheese is placed on top of the meat patty, but the burger can include many variations in structure, ingredients, and composition.",
-    "PreparationInMinutes": 20,
-    "CoookingMinutes": 30,
+    "PreparationMinutes": 20,
+    "CookingMinutes": 30,
     "Servings": 1,
+    "PictureUrl": "CAF.jpg",
     "RecipeTypeId": 1
   },
   {
     "Name": "Pasta",
     "Description": "Pasta is a type of food typically made from an unleavened dough of wheat flour mixed with water or eggs, and formed into sheets or other shapes, then cooked by boiling or baking.",
-    "PreparationInMinutes": 15,
-    "CoookingMinutes": 10,
+    "PreparationMinutes": 15,
+    "CookingMinutes": 10,
     "Servings": 6,
+    "PictureUrl": "Pasta.jpg",
     "RecipeTypeId": 2
   }
   

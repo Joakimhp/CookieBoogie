@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Infrastructure.Infrastructure.Data.Migrations
+namespace Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -34,6 +34,7 @@ namespace Infrastructure.Infrastructure.Data.Migrations
                     PreparationMinutes = table.Column<int>(type: "int", nullable: false, defaultValue: 30),
                     CookingMinutes = table.Column<int>(type: "int", nullable: false, defaultValue: 30),
                     Servings = table.Column<int>(type: "INTEGER", nullable: false, defaultValue: 4),
+                    PictureUrl = table.Column<string>(type: "TEXT", nullable: false),
                     RecipeTypeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

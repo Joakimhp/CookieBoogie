@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Infrastructure.Data;
 
-public class StoreContextSeed
+public class CookbookContextSeed
 {
     public static async Task SeedAsync(CookbookContext context)
     {
