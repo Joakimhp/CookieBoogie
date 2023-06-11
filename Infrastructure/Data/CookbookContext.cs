@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using System.Reflection;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data;
@@ -9,5 +10,12 @@ public class CookbookContext : DbContext
     {
     }
 
-    public DbSet<Recipe> Recipes { get; set; } = null!;
+    public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<RecipeType> RecipeTypes { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 }

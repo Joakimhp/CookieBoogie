@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Name": "Meat"
+  },
+  {
+    "Id": 2,
+    "Name": "Vegan"
+  },
+  {
+    "Id": 3,
+    "Name": "Vegetarian"
+  }
+]
