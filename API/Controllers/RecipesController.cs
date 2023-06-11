@@ -17,14 +17,17 @@ public class RecipesController : BaseApiController
     [HttpGet]
     public async Task<ActionResult<List<Recipe>>> GetRecipes()
     {
-        var recipes = await _context.Recipes.ToListAsync();
+        var recipes = await _context.Recipes
+            .Include(r => r.RecipeType)
+            .ToListAsync();
         return Ok(recipes);
     }
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Recipe>> GetRecipe(int id)
     {
-        var recipe = await _context.Recipes.FindAsync(id);
-        return Ok(recipe);
+        return await _context.Recipes
+            .Include(r => r.RecipeType)
+            .SingleOrDefaultAsync(r => r.Id == id);
     }
 }
